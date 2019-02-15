@@ -1,6 +1,6 @@
 TEMPLATE = lib
 TARGET = QtRPiGPIO
-QT += qml quick
+QT += qml
 CONFIG += plugin c++11
 
 TARGET = $$qtLibraryTarget($$TARGET)
