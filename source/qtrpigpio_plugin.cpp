@@ -4,6 +4,8 @@
 #include <qqml.h>
 #include <cstdlib>
 
+#include <QDebug>
+
 void QRPiGPIOPlugin::registerTypes(const char *uri)
 {
     // @uri qrpi.gpio
@@ -12,7 +14,7 @@ void QRPiGPIOPlugin::registerTypes(const char *uri)
 #ifndef QTRPI_MOCKUP
     if (get_rpi_info(&rpiinfo))
     {
-//       PyErr_SetString(PyExc_RuntimeError, "This module can only be run on a Raspberry Pi!");
+       qDebug() << "This module can only be run on a Raspberry Pi!";
        setup_error = 1;
        return;
     }
