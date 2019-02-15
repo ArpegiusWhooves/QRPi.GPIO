@@ -1,0 +1,2 @@
+module qtrpi.gpio
+plugin QtRPiGPIO

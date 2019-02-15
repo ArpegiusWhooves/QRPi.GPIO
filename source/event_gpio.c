@@ -388,7 +388,7 @@ int event_detected(unsigned int gpio)
     }
 }
 
-void event_cleanup(unsigned int gpio)
+void event_cleanup(int gpio)
 // gpio of -666 means clean every channel used
 {
     struct gpios *g = gpio_list;

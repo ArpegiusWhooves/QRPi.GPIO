@@ -542,24 +542,7 @@ static PyObject *py_getmode(PyObject *self, PyObject *args)
    return value;
 }
 
-static unsigned int chan_from_gpio(unsigned int gpio)
-{
-   int chan;
-   int chans;
 
-   if (gpio_mode == BCM)
-      return gpio;
-   if (rpiinfo.p1_revision == 0)   // not applicable for compute module
-      return -1;
-   else if (rpiinfo.p1_revision == 1 || rpiinfo.p1_revision == 2)
-      chans = 26;
-   else
-      chans = 40;
-   for (chan=1; chan<=chans; chan++)
-      if (*(*pin_to_gpio+chan) == gpio)
-         return chan;
-   return -1;
-}
 
 static void run_py_callbacks(unsigned int gpio)
 {
