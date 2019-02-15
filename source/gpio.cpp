@@ -75,10 +75,23 @@ static struct q_callback *q_callbacks = nullptr;
 GPIO::PinState GPIO::input()
 {
     unsigned int gpio;
-    if (get_gpio_number(m_pinMode,m_pin, &gpio)) {
-        qWarning() << "Unknown pin.";
-        return Unknown;
+
+    switch (get_gpio_number(m_pinMode,m_pin, &gpio)) {
+        case 0:
+            break;
+        case 3:
+            qWaring() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
+        return;
+        case 4:
+            qWaring() <<"The pin number is outside of valid cha on a Raspberry Pi";
+        return;
+        case 5:
+            qWaring() <<"The pin is invalid on a this Raspberry Pi board.";
+        return;
+        default:
+            break;
     }
+
     // check channel is set up as an input or output
     if (gpio_direction[gpio] != INPUT && gpio_direction[gpio] != OUTPUT)
     {
@@ -131,9 +144,20 @@ void GPIO::setup(PinDirection direction, PinPull pud, PinState initial)
 
     unsigned int gpio;
 
-    if(!get_gpio_number(m_pinMode,m_pin,&gpio)){
-        qWarning() << "Invalid pin!";
+    switch (get_gpio_number(m_pinMode,m_pin, &gpio)) {
+        case 0:
+            break;
+        case 3:
+            qWaring() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
         return;
+        case 4:
+            qWaring() <<"The pin number is outside of valid cha on a Raspberry Pi";
+        return;
+        case 5:
+            qWaring() <<"The pin is invalid on a this Raspberry Pi board.";
+        return;
+        default:
+            break;
     }
 
     int func = gpio_function(gpio);
@@ -163,8 +187,20 @@ void GPIO::setup(PinDirection direction, PinPull pud, PinState initial)
 void GPIO::cleanup()
 {
     unsigned int gpio;
-    if (get_gpio_number(m_pinMode,m_pin, &gpio)){
-       return;
+    switch (get_gpio_number(m_pinMode,m_pin, &gpio)) {
+        case 0:
+            break;
+        case 3:
+            qWaring() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
+        return;
+        case 4:
+            qWaring() <<"The pin number is outside of valid cha on a Raspberry Pi";
+        return;
+        case 5:
+            qWaring() <<"The pin is invalid on a this Raspberry Pi board.";
+        return;
+        default:
+            break;
     }
 
     event_cleanup(gpio);
@@ -214,8 +250,21 @@ void GPIO::output(bool value)
 {
     unsigned int gpio;
 
-    if (get_gpio_number(m_pinMode, m_pin, &gpio))
+    switch (get_gpio_number(m_pinMode,m_pin, &gpio)) {
+        case 0:
+            break;
+        case 3:
+            qWaring() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
         return;
+        case 4:
+            qWaring() <<"The pin number is outside of valid cha on a Raspberry Pi";
+        return;
+        case 5:
+            qWaring() <<"The pin is invalid on a this Raspberry Pi board.";
+        return;
+        default:
+            break;
+    }
 
     if (gpio_direction[gpio] != OUTPUT)
     {
