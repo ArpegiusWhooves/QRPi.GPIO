@@ -30,6 +30,8 @@ SOFTWARE.
 #define I2C          42
 #define PWM          43
 
+
+
 extern const int pin_to_gpio_rev1[41];
 extern const int pin_to_gpio_rev2[41];
 extern const int pin_to_gpio_rev3[41];
@@ -43,8 +45,9 @@ extern int module_setup;
 extern "C" {
 #endif
 
-    int check_gpio_priv(void);
-    int get_gpio_number(int gpio_mode, int channel, int *gpio);
+int check_gpio_priv(void);
+int get_gpio_number(int gpio_mode, int channel, unsigned int *gpio);
+
 
 #ifdef __cplusplus
 }

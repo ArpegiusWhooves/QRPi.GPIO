@@ -20,16 +20,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-
 #include "c_gpio.h"
 #include "common.h"
 
 const int pin_to_gpio_rev1[41] = {-1, -1, -1, 0, -1, 1, -1, 4, 14, -1, 15, 17, 18, 21, -1, 22, 23, -1, 24, 10, -1, 9, 25, 11, 8, -1, 7, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 const int pin_to_gpio_rev2[41] = {-1, -1, -1, 2, -1, 3, -1, 4, 14, -1, 15, 17, 18, 27, -1, 22, 23, -1, 24, 10, -1, 9, 25, 11, 8, -1, 7, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 const int pin_to_gpio_rev3[41] = {-1, -1, -1, 2, -1, 3, -1, 4, 14, -1, 15, 17, 18, 27, -1, 22, 23, -1, 24, 10, -1, 9, 25, 11, 8, -1, 7, -1, -1, 5, -1, 6, 12, 13, -1, 19, 16, 26, 20, -1, 21 };
-rpi_info rpiinfo;
+
+const int (*pin_to_gpio)[41];
 int gpio_direction[54];
-const int (*pin_to_gpio)[41] = 0;
+rpi_info rpiinfo;
+
 int setup_error = 0;
 int module_setup = 0;
 
@@ -38,7 +39,7 @@ int check_gpio_priv(void)
     // check module has been imported cleanly
     if (setup_error)
     {
-//          PyErr_SetString(PyExc_RuntimeError, "Module not imported correctly!");
+//        qCritical(PyExc_RuntimeError, "Module not imported correctly!");
         return 1;
     }
 
@@ -51,12 +52,13 @@ int check_gpio_priv(void)
     return 0;
 }
 
-int get_gpio_number(int gpio_mode, int channel, int *gpio)
+int get_gpio_number(int gpio_mode, int channel, unsigned int *gpio)
 {
     // check setmode() has been run
     if (gpio_mode != BOARD && gpio_mode != BCM)
     {
-        gpio_mode = BCM;
+//        PyErr_SetString(PyExc_RuntimeError, "Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)");
+        return 3;
     }
 
     // check channel number is in range
@@ -76,12 +78,12 @@ int get_gpio_number(int gpio_mode, int channel, int *gpio)
 //            PyErr_SetString(PyExc_ValueError, "The channel sent is invalid on a Raspberry Pi");
             return 5;
         } else {
-            if(gpio) *gpio = *(*pin_to_gpio+channel);
+            *gpio = *(*pin_to_gpio+channel);
         }
     }
     else // gpio_mode == BCM
     {
-        if(gpio) *gpio = channel;
+        *gpio = channel;
     }
 
     return 0;

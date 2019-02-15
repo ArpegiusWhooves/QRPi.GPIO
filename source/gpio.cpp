@@ -29,7 +29,7 @@ static int mmap_gpio_mem(void)
    result = setup();
    if (result == SETUP_DEVMEM_FAIL)
    {
-      qCritical() << "No access to /dev/mem.  Try running as root!";
+      qCritical() << "No access to /dev/gpiomem .  Try running as root!";
       return 1;
    } else if (result == SETUP_MALLOC_FAIL) {
       qCritical() << "No memmory!";
