@@ -81,15 +81,15 @@ GPIO::PinState GPIO::input()
             break;
         case 3:
             qWarning() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
-        return;
+        return Unknown;
         case 4:
             qWarning() <<"The pin number is outside of valid cha on a Raspberry Pi";
-        return;
+        return Unknown;
         case 5:
             qWarning() <<"The pin is invalid on a this Raspberry Pi board.";
-        return;
+        return Unknown;
         default:
-            break;
+            return Unknown;
     }
 
     // check channel is set up as an input or output
