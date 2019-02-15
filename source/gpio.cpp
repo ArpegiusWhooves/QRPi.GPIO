@@ -74,7 +74,7 @@ static struct q_callback *q_callbacks = nullptr;
 
 GPIO::PinState GPIO::input()
 {
-    int gpio;
+    unsigned int gpio;
     if (get_gpio_number(m_pinMode,m_pin, &gpio)) {
         qWarning() << "Unknown pin.";
         return Unknown;
@@ -129,7 +129,7 @@ void GPIO::setup(PinDirection direction, PinPull pud, PinState initial)
        return;
     }
 
-    int gpio;
+    unsigned int gpio;
 
     if(!get_gpio_number(m_pinMode,m_pin,&gpio)){
         qWarning() << "Invalid pin!";
@@ -162,7 +162,7 @@ void GPIO::setup(PinDirection direction, PinPull pud, PinState initial)
 
 void GPIO::cleanup()
 {
-    int gpio;
+    unsigned int gpio;
     if (get_gpio_number(m_pinMode,m_pin, &gpio)){
        return;
     }
@@ -212,7 +212,7 @@ void GPIO::setPinMode(GPIO::PinMode new_mode)
 
 void GPIO::output(bool value)
 {
-    int gpio;
+    unsigned int gpio;
 
     if (get_gpio_number(m_pinMode, m_pin, &gpio))
         return;
