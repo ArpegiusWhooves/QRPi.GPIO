@@ -39,9 +39,26 @@ void QRPiGPIOPlugin::registerTypes(const char *uri)
         return;
     }
 
-    if(!setup()){
+    switch (setup()) {
+        case SETUP_OK           : break;
+        case SETUP_DEVMEM_FAIL  :
+            qCritical() << "Error in setup: SETUP_DEVMEM_FAIL";
+            return;
+        case SETUP_MALLOC_FAIL  :
+            qCritical() << "Error in setup: SETUP_MALLOC_FAIL";
+            return;
+        case SETUP_MMAP_FAIL    :
+            qCritical() << "Error in setup: SETUP_MMAP_FAIL";
         return;
+        case SETUP_CPUINFO_FAIL :
+            qCritical() << "Error in setup: SETUP_CPUINFO_FAIL";
+        return;
+        case SETUP_NOT_RPI_FAIL :
+            qCritical() << "Error in setup: SETUP_NOT_RPI_FAIL";
+        return;
+        default:qCritical() << "Unknown error in setup."; return;
     }
+
 #endif
 
     qmlRegisterType<GPIO>(uri, 1, 0, "GPIO");
