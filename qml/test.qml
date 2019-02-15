@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import qtrpi.gpio 1.0
 
-
 Rectangle {
 
     width: 800
@@ -29,6 +28,7 @@ Rectangle {
 
     GPIO {
         id: pinRed
+        pinMode: GPIO.Bcm
         pin: 22
         Component.onCompleted: {
             pinRed.setup(GPIO.Input);
@@ -46,6 +46,7 @@ Rectangle {
 
     GPIO {
         id:pinGreen
+        pinMode: GPIO.Bcm
         pin: 27
         Component.onCompleted: {
             pinRed.setup(GPIO.Input);
