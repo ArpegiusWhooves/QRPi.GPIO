@@ -39,5 +39,7 @@ extern rpi_info rpiinfo;
 extern int setup_error;
 extern int module_setup;
 
-int check_gpio_priv(void);
-int get_gpio_number(int gpio_mode, int channel, int *gpio);
+extern "C" {
+    int check_gpio_priv(void);
+    int get_gpio_number(int gpio_mode, int channel, int *gpio);
+}
