@@ -33,6 +33,12 @@ typedef struct
 } rpi_info;
 #endif /* CPUINFO_H */
 
+#ifdef __cplusplus
 extern "C" {
+#endif
+
     int get_rpi_info(rpi_info *info);
+
+#ifdef __cplusplus
 }
+#endif

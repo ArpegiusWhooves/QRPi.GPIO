@@ -25,7 +25,10 @@ SOFTWARE.
 #define FALLING_EDGE 2
 #define BOTH_EDGE    3
 
+#ifdef __cplusplus
 extern "C" {
+#endif
+
     int add_edge_detect(unsigned int gpio, unsigned int edge, int bouncetime);
     void remove_edge_detect(unsigned int gpio);
     int add_edge_callback(unsigned int gpio, void (*func)(unsigned int gpio));
@@ -35,4 +38,7 @@ extern "C" {
     void event_cleanup(int gpio);
     void event_cleanup_all(void);
     int blocking_wait_for_edge(unsigned int gpio, unsigned int edge, int bouncetime);
+
+#ifdef __cplusplus
 }
+#endif

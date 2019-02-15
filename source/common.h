@@ -39,7 +39,13 @@ extern rpi_info rpiinfo;
 extern int setup_error;
 extern int module_setup;
 
+#ifdef __cplusplus
 extern "C" {
+#endif
+
     int check_gpio_priv(void);
     int get_gpio_number(int gpio_mode, int channel, int *gpio);
+
+#ifdef __cplusplus
 }
+#endif

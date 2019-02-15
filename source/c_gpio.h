@@ -20,7 +20,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#ifdef __cplusplus
 extern "C" {
+#endif
+
     int setup(void);
     void setup_gpio(int gpio, int direction, int pud);
     int gpio_function(int gpio);
@@ -32,7 +35,10 @@ extern "C" {
     void set_low_event(int gpio, int enable);
     int eventdetected(int gpio);
     void cleanup(void);
+
+#ifdef __cplusplus
 }
+#endif
 
 #define SETUP_OK          0
 #define SETUP_DEVMEM_FAIL 1
