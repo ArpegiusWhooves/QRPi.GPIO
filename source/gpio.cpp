@@ -229,7 +229,6 @@ void GPIO::output(bool value)
     output_gpio(gpio, value);
 }
 #else
-
 void GPIO::setPin(int pin){}
 void GPIO::setup(PinDirection direction, PinPull pud, PinState initial) {}
 void GPIO::cleanup(){}

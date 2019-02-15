@@ -22,11 +22,9 @@ win32:{
 HEADERS += source/c_gpio.h \
     source/common.h \
     source/cpuinfo.h \
-    source/event_gpio.h \
-    source/gpio.h
+    source/event_gpio.h
 
-SOURCES += source/gpio.cpp \
-    source/c_gpio.c \
+SOURCES += source/c_gpio.c \
     source/common.c \
     source/cpuinfo.c \
     source/event_gpio.c
