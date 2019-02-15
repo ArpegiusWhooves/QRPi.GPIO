@@ -80,13 +80,13 @@ GPIO::PinState GPIO::input()
         case 0:
             break;
         case 3:
-            qWaring() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
+            qWarning() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
         return;
         case 4:
-            qWaring() <<"The pin number is outside of valid cha on a Raspberry Pi";
+            qWarning() <<"The pin number is outside of valid cha on a Raspberry Pi";
         return;
         case 5:
-            qWaring() <<"The pin is invalid on a this Raspberry Pi board.";
+            qWarning() <<"The pin is invalid on a this Raspberry Pi board.";
         return;
         default:
             break;
@@ -148,13 +148,13 @@ void GPIO::setup(PinDirection direction, PinPull pud, PinState initial)
         case 0:
             break;
         case 3:
-            qWaring() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
+            qWarning() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
         return;
         case 4:
-            qWaring() <<"The pin number is outside of valid cha on a Raspberry Pi";
+            qWarning() <<"The pin number is outside of valid cha on a Raspberry Pi";
         return;
         case 5:
-            qWaring() <<"The pin is invalid on a this Raspberry Pi board.";
+            qWarning() <<"The pin is invalid on a this Raspberry Pi board.";
         return;
         default:
             break;
@@ -191,13 +191,13 @@ void GPIO::cleanup()
         case 0:
             break;
         case 3:
-            qWaring() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
+            qWarning() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
         return;
         case 4:
-            qWaring() <<"The pin number is outside of valid cha on a Raspberry Pi";
+            qWarning() <<"The pin number is outside of valid cha on a Raspberry Pi";
         return;
         case 5:
-            qWaring() <<"The pin is invalid on a this Raspberry Pi board.";
+            qWarning() <<"The pin is invalid on a this Raspberry Pi board.";
         return;
         default:
             break;
@@ -254,13 +254,13 @@ void GPIO::output(bool value)
         case 0:
             break;
         case 3:
-            qWaring() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
+            qWarning() <<"Please set pin numbering mode using pinMode to GPIO.Board or GPIO.Bcm";
         return;
         case 4:
-            qWaring() <<"The pin number is outside of valid cha on a Raspberry Pi";
+            qWarning() <<"The pin number is outside of valid cha on a Raspberry Pi";
         return;
         case 5:
-            qWaring() <<"The pin is invalid on a this Raspberry Pi board.";
+            qWarning() <<"The pin is invalid on a this Raspberry Pi board.";
         return;
         default:
             break;
